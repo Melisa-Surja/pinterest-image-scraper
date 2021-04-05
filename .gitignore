@@ -2,3 +2,6 @@
 *.log
 *.pyc
 notes.txt
+config.py
+venv
+.*/*

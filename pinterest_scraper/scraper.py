@@ -54,7 +54,7 @@ class Pinterest_Helper(object):
             self.browser = webdriver.Firefox(firefox_profile=profile)
         else:
             self.browser = browser
-        self.browser.get("https://www.pinterest.com")
+        self.browser.get("https://br.pinterest.com/login/")
         emailElem = self.browser.find_element_by_name('id')
         emailElem.send_keys(login)
         passwordElem = self.browser.find_element_by_name('password')
