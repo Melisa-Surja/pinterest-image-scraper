@@ -25,7 +25,7 @@ def download_images(myinputs, mydir = "./"):
 
 def download_all_links(download_urls, download_dir, ph, loop=5):
     for download_url in download_urls:
-        print(f"Downloading from {download_url}, please wait as we fetch images.")
+        print(f"Fetching images from {download_url}...")
 
         # collect a list of img urls
         images = ph.runme(download_url.strip())
@@ -51,7 +51,7 @@ def download_all_links(download_urls, download_dir, ph, loop=5):
                 f.write('\n' + '\n'.join(images))
 
         print(f"Successfully downloaded {len(images)} images!")
-        print("-"*89)
+        print("-"*40)
 
     # Close browser when finished?
     ph.close()
