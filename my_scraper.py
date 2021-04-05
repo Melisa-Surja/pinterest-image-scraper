@@ -23,7 +23,7 @@ def download_images(myinputs, mydir = "./"):
             playFile.write(chunk)
         playFile.close()
 
-def download_all_links(download_urls, download_dir, loop=5):
+def download_all_links(download_urls, download_dir, ph, loop=5):
     for download_url in download_urls:
         print(f"Downloading from {download_url}, please wait as we fetch images.")
 
@@ -53,13 +53,20 @@ def download_all_links(download_urls, download_dir, loop=5):
         print(f"Successfully downloaded {len(images)} images!")
         print("-"*89)
 
+    # Close browser when finished?
+    ph.close()
+
 
 if __name__ == "__main__":
+    # Setup config
     options = Options()
     options.binary_location = config.firefox_exe
     profile = webdriver.FirefoxProfile()
     profile.set_preference("permissions.default.image", 2)
     browser = webdriver.Firefox(options=options, firefox_profile=profile, executable_path=config.webdriver_path)
     ph = s.Pinterest_Helper(config.pinterest_login , config.pinterest_pass, browser=browser)
+
+    # Download now
     links = config.download_links.strip().split('\n')
-    download_all_links(links, download_dir)
+    download_all_links(download_urls=links, download_dir=config.download_dir, ph=ph)
+
